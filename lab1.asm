@@ -38,8 +38,8 @@ CODE_COMPARE:
 DISABLE_ALARM:
 	bl deactivatealarm
 WAIT_FOR_A:
-	mov r9,#0;;;;;;;;;;;;;;;;;;;;;
-	bl getkey_timer;;;;;;;;;;;;; TA BORT DESSA SÅ FUNKAR KODEN ÄNDÅ
+	mov r9,#0
+	bl getkey_timer
 	cmp r4,#0xA
 	beq START
 	bl WAIT_FOR_A
