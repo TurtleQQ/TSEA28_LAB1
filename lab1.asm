@@ -55,10 +55,10 @@ PRINT:
 printstring:
 	push {r4,r0,r5,lr}
 p_loop:
-		ldr r0,[r4],#1
-		bl printchar
-		subs r5,r5,#1
-		bne p_loop
+	ldr r0,[r4],#1
+	bl printchar
+	subs r5,r5,#1
+	bne p_loop
 	pop{r4,r0,r5,lr}
 	mov pc,lr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -77,18 +77,18 @@ deactivatealarm:
 getkey:
 	push{r0,r1,lr}
 strobe_off:
-    ldr r0,GPIOB_GPIODATA
-    ldr r1,[r0]
-    subs r1,r1,#0x10
-    bcc strobe_off ; loopar om strobe är ej nedtryckt.
-    mov r4,r1 ; sparar knapp tryck i r4.
+	ldr r0,GPIOB_GPIODATA
+	ldr r1,[r0]
+	subs r1,r1,#0x10
+	bcc strobe_off ; loopar om strobe är ej nedtryckt.
+	mov r4,r1 ; sparar knapp tryck i r4.
 strobe_on:
 	ldr r0,GPIOB_GPIODATA
-    ldr r1,[r0]
-    subs r1,r1,#0x10
-    bcs strobe_on
+	ldr r1,[r0]
+	subs r1,r1,#0x10
+	bcs strobe_on
 	pop{r0,r1,lr}
-    mov pc,lr
+	mov pc,lr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;
 addkey:
 	push {r4, r0, lr, r1}
@@ -99,7 +99,7 @@ addkey:
 	adds r1,r1,r4
 	str r1,[r0]
 	pop{r4, r0, lr, r1}
-    mov pc,lr
+	mov pc,lr
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 clearinput:
 	push {r0,r1}
@@ -137,31 +137,31 @@ olika:
 getkey_timer:
 	push{r0,r1,lr,r9}
 strobe_off1:
-    ldr r0,GPIOB_GPIODATA
-    ldr r1,[r0]
-    ldr r10,TIME
-    ;bl AREYOUTHERE
-    adds r9,r9,#1
-    cmp r9,r10
-    beq LOL
-    subs r1,r1,#0x10
-    bcc strobe_off1; loopar om strobe är ej nedtryckt.
-    mov r4,r1 ; sparar knapp tryck i r4.
+	ldr r0,GPIOB_GPIODATA
+	ldr r1,[r0]
+	ldr r10,TIME
+	;bl AREYOUTHERE
+	adds r9,r9,#1
+	cmp r9,r10
+	beq LOL
+	subs r1,r1,#0x10
+	bcc strobe_off1; loopar om strobe är ej nedtryckt.
+	mov r4,r1 ; sparar knapp tryck i r4.
 strobe_on1:
 	ldr r0,GPIOB_GPIODATA
-    ldr r1,[r0]
-    subs r1,r1,#0x10
-    bcs strobe_on1
+	ldr r1,[r0]
+	subs r1,r1,#0x10
+	bcs strobe_on1
 	pop{r0,r1,lr,r9}
-    mov pc,lr
+	mov pc,lr
 AREYOUTHERE:
-    adds r9,r9,#1
-    cmp r9,r10
-    beq LOL
-    mov pc,lr
+	adds r9,r9,#1
+	cmp r9,r10
+	beq LOL
+	mov pc,lr
 LOL:
 	pop{r0,r1,lr,r9}
-    bl START
+	bl START
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;
 
